@@ -13,9 +13,9 @@ function luckyDraw(player) {
   }
 
   async function luckyDrawPlayers(player1, player2, player3) {
-    let promise1 = luckyDraw(player1);
-    let promise2 = luckyDraw(player2);
-    let promise3 = luckyDraw(player3);
+    let promise1 =  await luckyDraw(player1);
+    let promise2 =  await luckyDraw(player2);
+    let promise3 =  await luckyDraw(player3);
   
     return Promise.allSettled([promise1, promise2, promise3]);
   }
