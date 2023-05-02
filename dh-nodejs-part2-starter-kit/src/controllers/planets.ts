@@ -1,5 +1,6 @@
 import {Request, Response} from "express";
 import pgPromise from "pg-promise";
+import multer from "multer";
 const db = pgPromise()("postgres://postgres:asd@localhost:5432/planets")
 type Planet = {
     id: number,
@@ -64,10 +65,22 @@ tabledb()
   //   response.status(200).json({ msg : "Planet deleted" }) 
   //   console.log(planets)
   // }
-
+  const storage = multer.diskStorage({
+    destination: {req, file, cb} => {
+      cb(null, "./uploads")
+    },
+    filename: (req, file, cb) => {
+      cb(null, file.originalname );
+    }
+  }); 
+  const upload = multer({ storage })
+  const createImg = async (request : Request, response : Response) => {
+    response.status(200).json({ msg : "Planet image created" })
+  }
   export {
     getAll,
     getOneById,
+    createImg
     // create,
     // updateById,
     // deleteById
