@@ -13,10 +13,19 @@ type Planet = {
     CREATE TABLE IF NOT EXISTS planets(
     id SERIAL NOT NULL PRIMARY KEY,
     name TEXT NOT NULL
+
+
+    CREATE TABLE IF NOT EXISTS users (
+      id SERIAL NOT NULLL PRIMARY KEY,
+      username TEXT NOT NULL,
+      password TEXT NOT NULL,
+      token TEXT
+    )
   )`)
   await db.none (`INSERT INTO planets(name) VALUES ('Mercury')`)
   await db.none (`INSERT INTO planets(name) VALUES ('Venus')`)
   }
+  await db.none (`INSERT INTO users (username, password) VALUES ('dummy', 'dummy')`);
   // type Planets = Planet[];
   
   // let planets: Planets = [
